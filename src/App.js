@@ -1,9 +1,16 @@
 import { useState, useEffect, Fragment } from "react";
+//
+import HomePage from "./components/HomePage";
+import Container from "./components/Container";
+import NavigationBar from "./components/NavigationBar";
 
 export default function App() {
   return (
     <Fragment>
-      <h1>Hi!</h1>
+      <Container>
+        <NavigationBar />
+        <HomePage />
+      </Container>
     </Fragment>
   );
 }
