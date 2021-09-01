@@ -1,16 +1,29 @@
-import { useState, useEffect, Fragment } from "react";
-//
+import { Route, Switch } from "react-router";
+import { Fragment } from "react";
+
 import HomePage from "./components/HomePage";
-import Container from "./components/Container";
 import NavigationBar from "./components/NavigationBar";
+import MovieDatailsPage from "./components/MovieDetailsPage";
+import MoviesPage from "./components/MoviesPage";
 
 export default function App() {
   return (
     <Fragment>
-      <Container>
-        <NavigationBar />
-        <HomePage />
-      </Container>
+      <NavigationBar />
+      <hr />
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+
+        <Route path="/movies" exact>
+          <MoviesPage />
+        </Route>
+
+        <Route path="/movies/:movieId">
+          <MovieDatailsPage />
+        </Route>
+      </Switch>
     </Fragment>
   );
 }

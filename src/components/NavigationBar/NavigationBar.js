@@ -1,9 +1,11 @@
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
+import Container from "../Container";
 import styles from "./NavigationBar.module.scss";
 
-export default function NavigationBar() {
+function NavigationBar() {
   return (
-    <nav className={styles.navigationBar}>
+    <Container>
       <NavLink
         exact
         to="/"
@@ -19,6 +21,8 @@ export default function NavigationBar() {
       >
         Movies
       </NavLink>
-    </nav>
+    </Container>
   );
 }
+
+export default memo(NavigationBar);
