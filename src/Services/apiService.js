@@ -37,14 +37,3 @@ export function fetchMovieReviewsById(movieId) {
     `${BASE_URL}movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`
   );
 }
-
-// https://api.themoviedb.org/3/movie/<<id>>/reviews?api_key=<<api_key>>&language=en-US&page=1
-
-// trending/movie/week
-// https://api.themoviedb.org/3/trending/movie/week?api_key=357b0f432d66a0bd560e276035046b29
-
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-
-// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-
-// https://api.themoviedb.org/3/movie/<<id>>/credits?api_key=<<api_key>>&language=en-US

@@ -10,7 +10,7 @@ export default function App() {
   return (
     <Fragment>
       <NavigationBar />
-      <hr />
+
       <Switch>
         <Route path="/" exact>
           <HomePage />
@@ -22,6 +22,10 @@ export default function App() {
 
         <Route path="/movies/:movieId">
           <MovieDatailsPage />
+        </Route>
+
+        <Route>
+          <HomePage />
         </Route>
       </Switch>
     </Fragment>

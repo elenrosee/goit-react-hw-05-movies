@@ -1,5 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
-import { Route, useParams, useRouteMatch } from "react-router";
+import {
+  Route,
+  useHistory,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from "react-router";
 import { NavLink } from "react-router-dom";
 import { fetchMovieById } from "../../Services/apiService";
 import styles from "./MovieDatailsPage.module.scss";
@@ -9,15 +15,24 @@ import Reviews from "../Reviews";
 
 export default function MovieDatailsPage() {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
   const { url } = useRouteMatch();
+  const [movie, setMovie] = useState(null);
+  const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     fetchMovieById(movieId).then(setMovie);
   }, [movieId]);
 
+  const goBack = () => {
+    history.push(location.state.prevPath);
+  };
+
   return (
     <Fragment>
+      <button type="button" onClick={goBack}>
+        Go back
+      </button>
       <Container>
         {movie && (
           <div className={styles.MovieContainer}>
@@ -44,10 +59,24 @@ export default function MovieDatailsPage() {
         <h3 className={styles.TextTitle}>Additional information</h3>
         <ul className={styles.NavList}>
           <li>
-            <NavLink to={`${url}/cast`}>Cast</NavLink>
+            <NavLink
+              to={{
+                pathname: `${url}/cast`,
+                state: { prevPath: location.state.prevPath },
+              }}
+            >
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+            <NavLink
+              to={{
+                pathname: `${url}/reviews`,
+                state: { prevPath: location.state.prevPath },
+              }}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
       </Container>

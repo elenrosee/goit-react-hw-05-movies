@@ -1,22 +1,39 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 import { fetchMovieByName } from "../../Services/apiService";
 import styles from "./Searchbar.module.scss";
 
 function Searchbar({ setSearchingMovies }) {
   const [request, setRequest] = useState("");
+  const history = useHistory();
+  const location = useLocation();
+
+  const searchQueryUrl = new URLSearchParams(location.search).get("query");
+
+  useEffect(() => {
+    if (!searchQueryUrl) {
+      return;
+    }
+
+    fetchMovieByName(searchQueryUrl).then(({ results }) => {
+      setSearchingMovies([...results]);
+    });
+  }, [searchQueryUrl, setSearchingMovies]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (request.trim()) {
-      fetchMovieByName(request).then(addSearchingMovies);
+      fetchMovieByName(request).then(({ results }) => {
+        setSearchingMovies([...results]);
+      });
+      history.push({
+        ...location,
+        search: `query=${request}`,
+      });
     } else {
       alert("Enter search request");
     }
-  };
-
-  const addSearchingMovies = ({ results }) => {
-    setSearchingMovies([...results]);
   };
 
   return (
