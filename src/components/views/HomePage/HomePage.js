@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { fetchTrendingMovie } from "../../Services/apiService";
+import { fetchTrendingMovie } from "../../../Services/apiService";
 import styles from "./HomePage.module.scss";
 
-import Container from "../Container";
-import MoviesList from "../MoviesList";
+import Container from "../../Container";
+import MoviesList from "../../MoviesList";
 
 export default function HomePage() {
   const [trendingMovies, setTrendingMovies] = useState([]);

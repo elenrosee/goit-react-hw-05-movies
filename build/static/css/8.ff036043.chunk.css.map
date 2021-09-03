@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/views/Reviews/Reviews.module.scss"],"names":[],"mappings":"AAAA,mDAEE,cAAe,CAChB,4BAGC,kBAAmB,CACpB,8BAGC,iBAAkB","file":"8.ff036043.chunk.css","sourcesContent":[".ReviewsList,\n.NoInfo {\n  padding: 15px 0;\n}\n\n.ReviewsItem {\n  margin-bottom: 15px;\n}\n\n.ReviewsAuthor {\n  margin-bottom: 5px;\n}\n"]}

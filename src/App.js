@@ -1,33 +1,44 @@
 import { Route, Switch } from "react-router";
-import { Fragment } from "react";
+import { Fragment, lazy, Suspense } from "react";
 
-import HomePage from "./components/HomePage";
 import NavigationBar from "./components/NavigationBar";
-import MovieDatailsPage from "./components/MovieDetailsPage";
-import MoviesPage from "./components/MoviesPage";
+
+const MovieDatailsPage = lazy(() =>
+  import(
+    "./components/views/MovieDetailsPage" /* webpackChunkName: "MovieDatailsPage" */
+  )
+);
+const MoviesPage = lazy(() =>
+  import("./components/views/MoviesPage" /* webpackChunkName: "MoviesPage" */)
+);
+const HomePage = lazy(() =>
+  import("./components/views/HomePage" /* webpackChunkName: "HomePage" */)
+);
 
 export default function App() {
   return (
     <Fragment>
       <NavigationBar />
 
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
 
-        <Route path="/movies" exact>
-          <MoviesPage />
-        </Route>
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
 
-        <Route path="/movies/:movieId">
-          <MovieDatailsPage />
-        </Route>
+          <Route path="/movies/:slug">
+            <MovieDatailsPage />
+          </Route>
 
-        <Route>
-          <HomePage />
-        </Route>
-      </Switch>
+          <Route>
+            <HomePage />
+          </Route>
+        </Switch>
+      </Suspense>
     </Fragment>
   );
 }

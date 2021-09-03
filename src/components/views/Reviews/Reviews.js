@@ -1,15 +1,15 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { fetchMovieReviewsById } from "../../Services/apiService";
+import { fetchMovieReviewsById } from "../../../Services/apiService";
 import styles from "./Reviews.module.scss";
 
 export default function Reviews() {
-  const { movieId } = useParams();
+  const { slug } = useParams();
   const [movieReviews, setMovieReviews] = useState([]);
 
   useEffect(() => {
-    fetchMovieReviewsById(movieId).then(setMovieReviews);
-  }, [movieId]);
+    fetchMovieReviewsById(slug.match(/[a-z0-9]+$/)[0]).then(setMovieReviews);
+  }, [slug]);
 
   return (
     <Fragment>

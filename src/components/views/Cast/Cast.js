@@ -1,16 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styles from "./Cast.module.scss";
-import { fetchMovieCastById } from "../../Services/apiService";
-import photo from "../../img/avatar.jpg";
+import { fetchMovieCastById } from "../../../Services/apiService";
+import photo from "../../../img/avatar.jpg";
 
 export default function Cast() {
-  const { movieId } = useParams();
+  const { slug } = useParams();
   const [movieCast, setMovieCast] = useState(null);
 
   useEffect(() => {
-    fetchMovieCastById(movieId).then(setMovieCast);
-  }, [movieId]);
+    fetchMovieCastById(slug.match(/[a-z0-9]+$/)[0]).then(setMovieCast);
+  }, [slug]);
 
   return (
     <Fragment>
