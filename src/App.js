@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router";
-import { Fragment, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 
+import Container from "./components/Container";
 import NavigationBar from "./components/NavigationBar";
 
 const MovieDatailsPage = lazy(() =>
@@ -17,9 +18,9 @@ const HomePage = lazy(() =>
 
 export default function App() {
   return (
-    <Fragment>
+    <Container>
       <NavigationBar />
-
+      <hr size="1" />
       <Suspense fallback={<h2>Loading...</h2>}>
         <Switch>
           <Route path="/" exact>
@@ -39,6 +40,6 @@ export default function App() {
           </Route>
         </Switch>
       </Suspense>
-    </Fragment>
+    </Container>
   );
 }

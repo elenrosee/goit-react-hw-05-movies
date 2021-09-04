@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Container from "../../Container";
+import { Fragment, useState } from "react";
 import MoviesList from "../../MoviesList";
 import Searchbar from "../../Searchbar";
 
@@ -7,9 +6,9 @@ export default function MoviesPage() {
   const [searchingMovies, setSearchingMovies] = useState([]);
 
   return (
-    <Container>
+    <Fragment>
       <Searchbar setSearchingMovies={setSearchingMovies} />
       <MoviesList arr={searchingMovies} />
-    </Container>
+    </Fragment>
   );
 }
