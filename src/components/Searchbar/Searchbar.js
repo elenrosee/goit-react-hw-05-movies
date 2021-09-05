@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { fetchMovieByName } from "../../Services/apiService";
+import PropTypes from "prop-types";
 import styles from "./Searchbar.module.scss";
 
 function Searchbar({ setSearchingMovies }) {
@@ -60,3 +61,7 @@ function Searchbar({ setSearchingMovies }) {
 }
 
 export default memo(Searchbar);
+
+Searchbar.propTypes = {
+  setSearchingMovies: PropTypes.func.isRequired,
+};

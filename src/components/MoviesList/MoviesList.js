@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import slugify from "slugify";
+import PropTypes from "prop-types";
 
 export default function MoviesList({ arr }) {
   const location = useLocation();
@@ -21,3 +22,12 @@ export default function MoviesList({ arr }) {
     </ul>
   );
 }
+
+MoviesList.propTypes = {
+  arr: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
